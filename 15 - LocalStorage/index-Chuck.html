@@ -39,11 +39,21 @@
       done: false
     };
     items.push(item);
+    populateList(items, itemsList);
     this.reset();
   }
 
-  function populateList(){
-    //At 07:00
+  //Video at 15:00 min
+
+  function populateList(listItems = [], htmlList){
+    htmlList.innerHTML = listItems.map((listItem,i)=> {
+      return `
+        <li>
+          <input type="checkbox" data-index=${i} id="listItem${i}" ${listItem.done ? 'checked': ''}/>
+          <label for="listItem${i}">${listItem.text}</label>
+        </li>
+      `;
+    }).join('');
   }
 
   addItems.addEventListener('submit', addItem);
